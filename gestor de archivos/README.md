@@ -39,6 +39,24 @@ console.log(ini.parameter(miArchivo, "ip")); //consola -> 123.456.789
 ```
 var ini=require("C:/miProyecto/ini.js");
 var miArchivo=ini.read("config.ini");
-ini.parameter(miArchivo, "edad", 30);
+ini.parameter(miArchivo, "edad", 30); //CAMBIAMOS EL VALOR DE "edad" POR "30"
 console.log(ini.parameter(miArchivo, "edad")); //consola -> 30
 ```
+__NOTA__: Si bien cambiamos el valor almacenado en nuestro archivo, este cambio no se guarda en config.ini, para ello mire el siguiente ejemplo.
+### Guardar/aplicar cambios en el archivo:
+```
+var ini=require("C:/miProyecto/ini.js");
+var miArchivo=ini.read("config.ini");
+ini.parameter(miArchivo, "edad", 30);
+console.log(ini.parameter(miArchivo, "edad")); //consola -> 30
+ini.write(miArchivo, "config.ini"); //GUARDAMOS TODOS LOS CAMBIOS EN NUESTRO config.ini
+```
+### Agregar un nuevo parametro:
+```
+var ini=require("C:/miProyecto/ini.js");
+var miArchivo=ini.read("config.ini");
+ini.parameter(miArchivo, "altura", "1.71m"); //altura NO EXISTE EN config.ini POR LO QUE SE AGREGARÁ AL FINAL
+console.log(ini.parameter(miArchivo, "altura")); //consola -> 1.71m
+ini.write(miArchivo, "config.ini"); //GUARDAMOS CAMBIOS EN config.ini
+```
+__NOTA__: En el momento en el que se le asigna el valor a un parametro no existente, este se crea con su respectivo valor al final del documento.
