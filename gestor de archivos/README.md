@@ -29,7 +29,8 @@ var ini=require("C:/miProyecto/ini.js"); //INCLUIMOS LA LIBRERIA
 var miArchivo=ini.read("config.ini"); //ALMACENAMOS NUESTRO ARCHIVO EN UNA VARIABLE
 console.log(miArchivo); //MOSTRAMOS EN CONSOLA COMO ESTÁ FRAGMENTADO NUSTRO ARCHIVO
 ```
-### Acceder al valor de un parametro, en este caso queremos saber que valor está amlacenado en el parametro "ip":
+### Acceder al valor de un parametro:
+En este caso queremos saber que valor está amlacenado en el parametro "ip":
 ```javascript
 var ini=require("C:/miProyecto/ini.js");
 var miArchivo=ini.read("config.ini");
