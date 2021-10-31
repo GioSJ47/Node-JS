@@ -42,7 +42,7 @@ module.exports = {
         return archivo;
     },
     read:function(dir){
-        return this.obj(fs.readFileSync(dir, {encoding:'utf8', flag:'r'}).toString());
+        return this.obj(fs.readFileSync(dir, {flag:'r'}).toString());
     },
     parameter:function(file, parameter, value="", comment=""){
         if(!_fileIni(file)){return false}
