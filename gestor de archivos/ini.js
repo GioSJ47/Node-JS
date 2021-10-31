@@ -10,7 +10,7 @@ const _fileIni=(file)=>{
     return false;
 }
 module.exports = {
-    objIni:function(str){
+    obj:function(str){
         str=str.split("\n");
         let l=str.length, archivo={parameter:Array(),value:Array()};
         for(let i=0; i<l ;i++){
@@ -41,10 +41,10 @@ module.exports = {
         }
         return archivo;
     },
-    readIni:function(dir){
-        return this.objIni(fs.readFileSync(dir, {encoding:'utf8', flag:'r'}).toString());
+    read:function(dir){
+        return this.obj(fs.readFileSync(dir, {encoding:'utf8', flag:'r'}).toString());
     },
-    parameterIni:function(file, parameter, value="", comment=""){
+    parameter:function(file, parameter, value="", comment=""){
         if(!_fileIni(file)){return false}
         let pos=file.parameter.indexOf(parameter);
         if(pos+1){
@@ -65,7 +65,7 @@ module.exports = {
             return true;
         }
     },
-    writeIni:function(dir, file){
+    write:function(file, dir=null){
         if(!_fileIni(file)){return false}
         if(typeof file==="object"){
             let res="";
