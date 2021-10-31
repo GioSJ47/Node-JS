@@ -16,7 +16,7 @@ __Funciones secundarias:__
 1. ```objIni(string)``` transforma un strin en un objeto archivo ini.
 __Ejemplos:__
 tenemos el siguiente archivo _config.ini_:
-```
+```ini
 ip=123.456.789
 nombre=Juan Gonzalez
 edad=22
@@ -24,19 +24,19 @@ color=#333
 saludar=si
 ```
 ### Leer un archivo ini y almacenarlo en una variable:
-```
+```javascript
 var ini=require("C:/miProyecto/ini.js"); //INCLUIMOS LA LIBRERIA
 var miArchivo=ini.read("config.ini"); //ALMACENAMOS NUESTRO ARCHIVO EN UNA VARIABLE
 console.log(miArchivo); //MOSTRAMOS EN CONSOLA COMO ESTÁ FRAGMENTADO NUSTRO ARCHIVO
 ```
 ### Acceder al valor de un parametro, en este caso queremos saber que valor está amlacenado en el parametro "ip":
-```
+```javascript
 var ini=require("C:/miProyecto/ini.js");
 var miArchivo=ini.read("config.ini");
 console.log(ini.parameter(miArchivo, "ip")); //consola -> 123.456.789
 ```
 ### Cambiar el valor almacenado en un parametro:
-```
+```javascript
 var ini=require("C:/miProyecto/ini.js");
 var miArchivo=ini.read("config.ini");
 ini.parameter(miArchivo, "edad", 30); //CAMBIAMOS EL VALOR DE "edad" POR "30"
@@ -44,7 +44,7 @@ console.log(ini.parameter(miArchivo, "edad")); //consola -> 30
 ```
 __NOTA__: Si bien cambiamos el valor almacenado en nuestro archivo, este cambio no se guarda en config.ini, para ello mire el siguiente ejemplo.
 ### Guardar/aplicar cambios en el archivo:
-```
+```javascript
 var ini=require("C:/miProyecto/ini.js");
 var miArchivo=ini.read("config.ini");
 ini.parameter(miArchivo, "edad", 30);
@@ -52,7 +52,7 @@ console.log(ini.parameter(miArchivo, "edad")); //consola -> 30
 ini.write(miArchivo, "config.ini"); //GUARDAMOS TODOS LOS CAMBIOS EN NUESTRO config.ini
 ```
 ### Agregar un nuevo parametro:
-```
+```javascript
 var ini=require("C:/miProyecto/ini.js");
 var miArchivo=ini.read("config.ini");
 ini.parameter(miArchivo, "altura", "1.71m"); //altura NO EXISTE EN config.ini POR LO QUE SE AGREGARÁ AL FINAL
