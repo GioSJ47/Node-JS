@@ -3,9 +3,9 @@ module.exports = class Ini{
     #file;
     constructor(dir){
         this.dir=dir;
-        this.#read();
+        this.read();
     }
-    #read(){
+    read(){
         this.str=fs.readFileSync(this.dir, {flag:'r'}).toString().split("\n");
         this.l=this.str.length;
         this.file={parameter:Array(),value:Array()};
