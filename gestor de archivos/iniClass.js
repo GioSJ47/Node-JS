@@ -1,9 +1,9 @@
 var fs = require("fs");
 module.exports = class Ini{
     #file;
-    constructor(dir){
+    constructor(dir, autoRead=false){
         this.dir=dir;
-        this.read();
+        if(autoRead)this.read();
     }
     read(){
         this.str=fs.readFileSync(this.dir, {flag:'r'}).toString().split("\n");
