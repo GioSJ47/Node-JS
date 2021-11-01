@@ -61,3 +61,25 @@ console.log(ini.parameter(miArchivo, "altura")); //consola -> 1.71m
 ini.write(miArchivo, "config.ini"); //GUARDAMOS CAMBIOS EN config.ini
 ```
 __NOTA__: En el momento en el que se le asigna el valor a un parametro no existente, este se crea con su respectivo valor al final del documento.
+
+## iniClass.js
+__Ejemplo de uso:__
+```javascript
+const Ini=require("C:/DIRECCION/iniClass.js");
+
+const miConfig=new Ini("config.ini");
+
+//LEEMOS UN PARAMETRO
+    console.log("IP: "+miConfig.parameter("ip"));
+
+//CAMBIAMOS UN PARAMETRO
+    miConfig.parameter("ip", "123.123.123");
+    console.log("Nueva IP: "+miConfig.parameter("ip"));
+
+//AGREGAMOS UN NUEVO PARAMETRO
+    miConfig.parameter("nuevoParametro", "mi valor");
+    console.log("Nuevo parametro: "+miConfig.parameter("nuevoParametro"));
+
+//GUARDAMOS LOS CAMBIOS
+    miConfig.write();
+```
