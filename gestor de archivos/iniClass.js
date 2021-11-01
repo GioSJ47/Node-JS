@@ -6,7 +6,12 @@ module.exports = class Ini{
         if(autoRead)this.read();
     }
     read(){
-        this.str=fs.readFileSync(this.dir, {flag:'r'}).toString().split("\n");
+        try{
+            this.str=fs.readFileSync(this.dir, {flag:'r'}).toString().split("\n");
+        }catch(err){
+            console.error(err.message);
+            return false;
+        }
         this.l=this.str.length;
         this.file={parameter:Array(),value:Array()};
         for(let i=0; i<this.l ;i++){
@@ -38,37 +43,43 @@ module.exports = class Ini{
         this.#file=this.file;
     }
     parameter(parameter, value="", comment=""){
-        this.pos=this.#file.parameter.indexOf(parameter);
-        if(this.pos+1){
-            if(value){
-                this.#file.value[this.pos][0]=value;
+        if(typeof this.#file === "object"){
+            this.pos=this.#file.parameter.indexOf(parameter);
+            if(this.pos+1){
+                if(value){
+                    this.#file.value[this.pos][0]=value;
+                    return true;
+                }else{
+                    return this.#file.value[this.pos][0];
+                }
+            }else{
+                if(!value){value=""}
+                this.#file.parameter.push(parameter);
+                if(comment){
+                    this.#file.value.push(Array(value+"",comment+""));
+                }else{
+                    this.#file.value.push(Array(value+""));
+                }
                 return true;
-            }else{
-                return this.#file.value[this.pos][0];
             }
-        }else{
-            if(!value){value=""}
-            this.#file.parameter.push(parameter);
-            if(comment){
-                this.#file.value.push(Array(value+"",comment+""));
-            }else{
-                this.#file.value.push(Array(value+""));
-            }
-            return true;
         }
+        return false;
     }
     write(){
-        this.res="";
-        this.l=this.#file.parameter.length;
-        for(let i=0; i<this.l ;i++){
-            if(this.#file.parameter[i]===";"){
-                this.res+=";"+this.#file.value[i][0];
-            }else if(this.#file.parameter[i]!==""){
-                this.res+=this.#file.parameter[i]+"="+this.#file.value[i][0]+((this.#file.value[i].length===2)?";"+this.#file.value[i][1]:"");
+        if(typeof this.#file === "object"){
+            this.res="";
+            this.l=this.#file.parameter.length;
+            for(let i=0; i<this.l ;i++){
+                if(this.#file.parameter[i]===";"){
+                    this.res+=";"+this.#file.value[i][0];
+                }else if(this.#file.parameter[i]!==""){
+                    this.res+=this.#file.parameter[i]+"="+this.#file.value[i][0]+((this.#file.value[i].length===2)?";"+this.#file.value[i][1]:"");
+                }
+                this.res+=""+((i+1===this.l)?"":"\n");
             }
-            this.res+=""+((i+1===this.l)?"":"\n");
+            fs.writeFileSync(this.dir, this.res);
+            return true;
         }
-        fs.writeFileSync(this.dir, this.res);
-        return true;
+        return false;
     }
 }
