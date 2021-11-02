@@ -15,7 +15,6 @@ class Ini {
             str = fs.readFileSync(this.dir, { flag: 'r' }).toString().split("\n");
         } catch {
             str = [""];
-            this.#create=1;
         }
 
         let file = {
