@@ -7,7 +7,7 @@ module.exports = class Ini{
     }
     read(){
         try{
-            this.str=fs.readFileSync(this.dir, {flag:'r'}).toString().split("\n");
+            this.str=fs.readFileSync(this.dir).toString().split("\n");
         }catch(err){
             console.error(err.message);
             return false;
