@@ -1,10 +1,12 @@
 var fs = require("fs");
 
 class Ini {
-    
-    constructor (dir) {
+    #file;
+    constructor (dir, autoOpen=false) {
         this.dir = dir;
-        this._file;
+        if (autoOpen) {
+            this.open();
+        }
     }
 
     open () {
@@ -55,64 +57,64 @@ class Ini {
             }
         }
 
-        this._file = file;
+        this.#file = file;
     }
 
     parameter (parameter, value="") {
         if (Array.isArray(parameter)) {
             let pos;
             if (parameter[0][0] !== "[") {
-                for (let i=0; i < this._file.parameter.length; i++) {
+                for (let i=0; i < this.#file.parameter.length; i++) {
                     if (pos) {
-                        if (this._file.parameter[i] === "[" || i === this._file.parameter.length-1) {
+                        if (this.#file.parameter[i] === "[" || i === this.#file.parameter.length-1) {
                             if (value) {
-                                this._file.parameter.splice(i+1, 0, parameter[1]);
-                                this._file.value.splice(i+1, 0, value);
+                                this.#file.parameter.splice(i+1, 0, parameter[1]);
+                                this.#file.value.splice(i+1, 0, value);
                                 
                                 return true;
                             }
                             
                             return false;
                         }
-                        if (this._file.parameter[i] === parameter[1]) {
+                        if (this.#file.parameter[i] === parameter[1]) {
                             if (value) {
-                                this._file.value[i] = value;
+                                this.#file.value[i] = value;
                                 
                                 return true;
                             }
 
-                            return this._file.value[i];
+                            return this.#file.value[i];
                         }
-                    } else if (this._file.parameter[i] === "[" && this._file.value[i] === "[" + parameter[0] + "]") {
+                    } else if (this.#file.parameter[i] === "[" && this.#file.value[i] === "[" + parameter[0] + "]") {
                         pos = i;
                         console.log("Encontrado en "+i);
                     }
                 }
                 if (value){
-                    this._file.parameter.push("[");
-                    this._file.value.push("["+parameter[0]+"]");
-                    this._file.parameter.push(parameter[1]);
-                    this._file.value.push(value);
+                    this.#file.parameter.push("[");
+                    this.#file.value.push("["+parameter[0]+"]");
+                    this.#file.parameter.push(parameter[1]);
+                    this.#file.value.push(value);
                 }
             }
 
             return false;
         } else {
-            let pos = this._file.parameter.indexOf(parameter);
+            let pos = this.#file.parameter.indexOf(parameter);
             if (pos + 1) {
                 if (value) {
-                    this._file.value[pos] = value;
+                    this.#file.value[pos] = value;
                     return true;
                 } else {
-                    return this._file.value[pos];
+                    return this.#file.value[pos];
                 }
             } else {
                 if (!value) {
                     return false;
                 }
 
-                this._file.parameter.push(parameter);
-                this._file.value.push(Array(value + ""));
+                this.#file.parameter.push(parameter);
+                this.#file.value.push(Array(value + ""));
                 
                 return true;
             }
@@ -122,7 +124,7 @@ class Ini {
     parameters (parameter, pos=false) {
         let res = Array();
         if (pos){
-            for (let i=0; i < this._file.parameter.length ;i++) {
+            for (let i=0; i < this.#file.parameter.length ;i++) {
                 if (this.parameter[i] === parameter) {
                     res.push(i);
                 }
@@ -131,9 +133,9 @@ class Ini {
                 return false;
             }
         } else {
-            for (let i=0; i < this._file.parameter.length ;i++) {
+            for (let i=0; i < this.#file.parameter.length ;i++) {
                 if (this.parameter[i] === parameter) {
-                    res.push(this._file.value[i]);
+                    res.push(this.#file.value[i]);
                 }
             }
         }
@@ -143,15 +145,15 @@ class Ini {
     
     write () {
         let res = "";
-        for (let i = 0; i < this._file.parameter.length; i++) {
-            if (this._file.parameter[i] === "") { } 
-            else if (this._file.parameter[i] === ";" || this._file.parameter[i] === "[") {
-                res += this._file.value[i];
+        for (let i = 0; i < this.#file.parameter.length; i++) {
+            if (this.#file.parameter[i] === "") { } 
+            else if (this.#file.parameter[i] === ";" || this.#file.parameter[i] === "[") {
+                res += this.#file.value[i];
             } else {
-                res += this._file.parameter[i] + "=" + this._file.value[i];
+                res += this.#file.parameter[i] + "=" + this.#file.value[i];
             }
 
-            if (i < this._file.parameter.length-1) {
+            if (i < this.#file.parameter.length-1) {
                 res += "\n";
             }
         }
