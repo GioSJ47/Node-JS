@@ -1,21 +1,21 @@
 # ini.js
 ## Índice:
-1. Informacion.
-  1. <a href="#a1">Características.</a>
-  2. <a href="#a2">Notas.</a>
-  3. <a href="#a3">Incluir la libreria.</a>
-  4. <a href="#a4">Crear objeto Ini.</a>
-  5. <a href="#a5">Funciones principales.</a>
-  6. <a href="#a6">Funciones secundarias.</a>
-2. <a href="#b">Ejemplos básicos.</a>
-  1. <a href="#b1">Leer un archivo ini.</a>
-  2. <a href="#b2">Acceder al valor de un parametro.</a>
-  3. <a href="#b3">Cambiar el valor almacenado en un parametro.</a>
-  4. <a href="#b4">Guardar cambios en el archivo.</a>
-  5. <a href="#b5">Agregar un nuevo parametro.</a>
-3. <a href="#c">Uso de secciones.</a>
-  1. <a href="#c1">Acceder a un parametro dentro de una seccion.</a>
-  2. <a href="#c2">Buscar un parametro dentro de una seccion.</a>
+* Informacion.
+  - <a href="#a1">Características.</a>
+  - <a href="#a2">Notas.</a>
+  - <a href="#a3">Incluir la libreria.</a>
+  - <a href="#a4">Crear objeto Ini.</a>
+  - <a href="#a5">Funciones principales.</a>
+  - <a href="#a6">Funciones secundarias.</a>
+* <a href="#b">Ejemplos básicos.</a>
+  - <a href="#b1">Leer un archivo ini.</a>
+  - <a href="#b2">Acceder al valor de un parametro.</a>
+  - <a href="#b3">Cambiar el valor almacenado en un parametro.</a>
+  - <a href="#b4">Guardar cambios en el archivo.</a>
+  - <a href="#b5">Agregar un nuevo parametro.</a>
+* <a href="#c">Uso de secciones.</a>
+  - <a href="#c1">Acceder a un parametro dentro de una seccion.</a>
+  - <a href="#c2">Buscar un parametro dentro de una seccion.</a>
 
 <h2 id="a1">Esta libreria te permite acceder a archivos de configuración para:</h2>
 1. Leer valores almacenados en parámetros deseados dentro o no de secciones.
