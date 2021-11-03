@@ -1,5 +1,5 @@
-## ini.js
-__Esta libreria te permite acceder a archivos de configuración para:__
+# ini.js
+## Esta libreria te permite acceder a archivos de configuración para:
 1. Leer valores almacenados en parámetros deseados dentro o no de secciones.
 2. Cambiar valores almacenados en parametros.
 3. Agregar parametros con su respectivo valor.
@@ -12,29 +12,29 @@ __Notas:__
 3. No se puede crear un archivo ini, solo se puede trabajar sobre uno ya existente.
 4. No se puede agregar un comentario en la misma linea donde se establece una seccion, esto puede generar problemas.
 
-__Para incluir la librería:__
+## Para incluir la librería:
 ```javascript
 const Ini = require("C:/Users/giova/Desktop/SistemaDeArchivos/ini.js");
 ```
 
-__Forma en la que se generan objetos archivo ini:__
+## Forma en la que se generan objetos archivo ini:
 ```javascript
 var miArchivo = new Ini("C:/miProyecto/miArchivo.ini");
 
 var miArchivo2 = new Ini("C:/miProyecto/miArchivo2.ini", true); //DE ESTA FORMA, NO SERÁ NECESARIO LLAMAR LA FUNCION .open()
 ```
 
-__Funciones principales:__
+## Funciones principales:
 1. ```.open()``` esta función lee el archivo espesificado posteriormente.
 2. ```.parameter(parameter, value)``` permite leer el valor almacenado en un parametro o cambiar el valor de un parametro y si este no existe lo agrega.
 3. ```.parameter([section, parameter], value)``` permite leer el valor almacenado en un parametro dentro de una seccion o cambiar el valor de un parametro que pertenezca a la seccion mencionada y si este no existe lo agrega, al igual que la seccion, si no existe se agrega.
 4. ```.write()``` guarda el archivo con todos los cambios, si este no existe será creado.
 
-__Funciones secundarias:__
+## Funciones secundarias:
 1. ```.parameters(parametro, positions)``` devuelve un array con todos los valores almacenados en todos los parametros llamados igual.
 
-__Ejemplos:__
-tenemos el siguiente archivo _config.ini_:
+## Ejemplos:
+Tenemos el siguiente archivo _config.ini_:
 ```ini
 ip=123.456.789
 nombre=Juan Gonzalez
