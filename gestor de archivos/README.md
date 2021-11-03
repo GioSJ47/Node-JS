@@ -1,4 +1,6 @@
 # ini.js
+## Índice:
+<a href="#incluir">Incluir la libreria</a>
 ## Esta libreria te permite acceder a archivos de configuración para:
 1. Leer valores almacenados en parámetros deseados dentro o no de secciones.
 2. Cambiar valores almacenados en parametros.
@@ -12,7 +14,7 @@ __Notas:__
 3. No se puede crear un archivo ini, solo se puede trabajar sobre uno ya existente.
 4. No se puede agregar un comentario en la misma linea donde se establece una seccion, esto puede generar problemas.
 
-## Para incluir la librería:
+<h2 id="incluir">Para incluir la librería:</h2>
 ```javascript
 const Ini = require("C:/Users/giova/Desktop/SistemaDeArchivos/ini.js");
 ```
