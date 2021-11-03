@@ -1,4 +1,3 @@
-# ini.js
 ## INDICE:
 * Informacion.
   - <a href="#a1">Características.</a>
