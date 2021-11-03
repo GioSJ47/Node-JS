@@ -18,6 +18,7 @@
   - <a href="#c2">Buscar un parametro dentro de una seccion.</a>
 
 <h2 id="a1">Esta libreria te permite acceder a archivos de configuración para:</h2>
+
 1. Leer valores almacenados en parámetros deseados dentro o no de secciones.
 2. Cambiar valores almacenados en parametros.
 3. Agregar parametros con su respectivo valor.
@@ -25,17 +26,20 @@
 5. Guardar el archivo con todos los cambios hechos.
 
 <h2 id="a2">Notas:</h2>
+
 1. Se cuidan los comentarios en lineas únicas y las lineas vacias.
 2. Si un comentario se encuentra en la misma linea donde hay un parametro y valor, se considerará parte del valor.
 3. No se puede crear un archivo ini, solo se puede trabajar sobre uno ya existente.
 4. No se puede agregar un comentario en la misma linea donde se establece una seccion, esto puede generar problemas.
 
 <h2 id="a3">Para incluir la librería:</h2>
+
 ```javascript
 const Ini = require("C:/Users/giova/Desktop/SistemaDeArchivos/ini.js");
 ```
 
 <h2 id="a4">Forma en la que se generan objetos archivo ini:</h2>
+
 ```javascript
 var miArchivo = new Ini("C:/miProyecto/miArchivo.ini");
 
@@ -43,15 +47,18 @@ var miArchivo2 = new Ini("C:/miProyecto/miArchivo2.ini", true); //DE ESTA FORMA,
 ```
 
 <h2 id="a5">Funciones principales:</h2>
+
 1. ```.open()``` esta función lee el archivo espesificado posteriormente.
 2. ```.parameter(parameter, value)``` permite leer el valor almacenado en un parametro o cambiar el valor de un parametro y si este no existe lo agrega.
 3. ```.parameter([section, parameter], value)``` permite leer el valor almacenado en un parametro dentro de una seccion o cambiar el valor de un parametro que pertenezca a la seccion mencionada y si este no existe lo agrega, al igual que la seccion, si no existe se agrega.
 4. ```.write()``` guarda el archivo con todos los cambios, si este no existe será creado.
 
 <h2 id="a6">Funciones secundarias:</h2>
+
 1. ```.parameters(parametro, positions)``` devuelve un array con todos los valores almacenados en todos los parametros llamados igual.
 
 <h2 id="b">Ejemplos:</h2>
+
 Tenemos el siguiente archivo _config.ini_:
 ```ini
 ip=123.456.789
@@ -62,6 +69,7 @@ saludar=si
 ```
 
 <h2 id="b1">Leer un archivo ini y almacenarlo en una variable:</h2>
+
 ```javascript
 const Ini = require("C:/miProyecto/ini.js"); //INCLUIMOS LA LIBRERIA
 var miArchivo = new Ini("config.ini"); //ALMACENAMOS NUESTRO ARCHIVO EN UNA VARIABLE
@@ -70,6 +78,7 @@ miArchivo.open(); //ABRIMOS EL ARCHIVO, SI NO EXISTE, LUEGO SERÁ CREADO CUANDO 
 ```
 
 <h2 id="b2">Acceder al valor de un parametro:</h2>
+
 En este caso queremos saber que valor está amlacenado en el parametro "ip":
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
@@ -79,6 +88,7 @@ console.log(miArchivo.parameter("ip")); //consola -> 123.456.789
 ```
 
 <h2 id="b3">Cambiar el valor almacenado en un parametro:</h2>
+
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
 var miArchivo = new Ini("config.ini", true);
@@ -89,6 +99,7 @@ console.log(miArchivo.parameter("edad")); //consola -> 30
 __NOTA__: Si bien cambiamos el valor almacenado en nuestro archivo, este cambio no se guarda en _config.ini_, para ello mire el siguiente ejemplo.
 
 <h2 id="b4">Guardar/aplicar cambios en el archivo:</h2>
+
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
 var miArchivo = new Ini("config.ini", true);
@@ -101,6 +112,7 @@ miArchivo.write(); //GUARDAMOS TODOS LOS CAMBIOS EN NUESTRO config.ini
 
 __NOTA__: Si no existe el archivo _config.ini_, será creado.
 <h2 id="b5">Agregar un nuevo parametro:</h2>
+
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
 var miArchivo = new Ini("config.ini", true);
@@ -115,6 +127,7 @@ __NOTA__: En el momento en el que se le asigna el valor a un parametro no existe
 <hr>
 
 <h2 id="c">Uso de sections (secciones):</h2>
+
 Supongamos que tenemos el siguiente archivo _consig.ini_:
 ```ini
 descripcion=Concurso intelectual, el mejor proyecto gana.
@@ -137,7 +150,8 @@ tema=Química
 ```
 __Sintaxis para trabajar con secciones__: ```miArchivo.parameter(['Seleccion', 'parametro'], 'valor');```
 <h2 id="c1">Buscar un parametro dentro de una seleccion:</h2>
-Supongamos que queremos saber la ID del Grupo B.
+
+Si queremos saber la ID del Grupo B, haríamos lo siguiente.
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
 var miArchivo = new Ini("config.ini", true);
@@ -145,7 +159,8 @@ var miArchivo = new Ini("config.ini", true);
 console.log(miArchivo.parameter(['Grupo B', 'id'])); //consola -> 210
 ```
 <h2 id="c2">Cambiar el valor de un parametro dentro de una seleccion:</h2>
-Supongamos que queremos cambiar la ID del Grupo C por 230.
+
+Si que queremos cambiar la ID del Grupo C por 230, haríamos lo siguiente.
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
 var miArchivo = new Ini("config.ini", true);
@@ -154,4 +169,3 @@ miArchivo.parameter(['Grupo C', 'id'], 230); //Ahora la ID del grupo C es 230
 
 miArchivo.write(); //Guardamos los cambios
 ```
-__NOTA__:
