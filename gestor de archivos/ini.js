@@ -1,5 +1,4 @@
 var fs = require("fs");
-
 class Ini {
     #file;
     constructor (dir, autoOpen=false) {
@@ -115,30 +114,21 @@ class Ini {
 
     parameters (parameter, pos=false) {
         let res = Array();
-        if (pos) {
-            for (let i=0; i < this.#file.parameter.length ;i++) {
-                if (this.parameter[i] === parameter) {
-                    res.push(i);
-                }
-            }
-            if (res.length === 0) {
-                return false;
-            }
-        } else {
-            for (let i=0; i < this.#file.parameter.length ;i++) {
-                if (this.parameter[i] === parameter) {
-                    res.push(this.#file.value[i]);
-                }
+        for (let i = 0; i < this.#file.parameter.length; i++) {
+            if (this.parameter[i] === parameter) {
+                res.push(this.#file.value[i]);
             }
         }
         
+        if (res.length === 0) {
+            return false;
+        }
         return res;
     }
     
     write () {
-        let res = "",
-            _i = (this.#file.parameter[0] === "") ? 1 : 0;
-        for (let i = _i; i < this.#file.parameter.length; i++) {
+        let res = "";
+        for (let i = ((this.#file.parameter[0] === "") ? 1 : 0); i < this.#file.parameter.length; i++) {
             if (this.#file.parameter[i] === "") { } 
             else if (this.#file.parameter[i] === ";" || this.#file.parameter[i] === "[") {
                 res += this.#file.value[i];
