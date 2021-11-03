@@ -93,3 +93,38 @@ console.log(ini.parameter(miArchivo, "altura")); //consola -> 1.71m
 miArchivo.write(); //GUARDAMOS CAMBIOS EN config.ini
 ```
 __NOTA__: En el momento en el que se le asigna el valor a un parametro no existente, este se crea con su respectivo valor al final del documento.
+
+<hr>
+
+## Uso de sections (secciones):
+Supongamos que tenemos el siguiente archivo _consig.ini_:
+```ini
+descripcion=Concurso intelectual, el mejor proyecto gana.
+fecha=5/11/2021 16:00
+
+[Grupo A]
+id=125
+integrantes=Giovanni, Valentino
+tema=Programacion
+
+[Grupo B]
+id=210
+integrantes=Jose, Carlos
+tema=Arquitectura
+
+[Grupo C]
+id=154
+integrantes=Pedro, Federico, Facundo
+tema=Química
+```
+### Buscar un parametro dentro de una seleccion:
+```javascript
+const Ini = require("C:/miProyecto/ini.js");
+var miArchivo = new Ini("config.ini");
+
+miArchivo.parameter("altura", "1.71m"); //altura NO EXISTE EN config.ini POR LO QUE SE AGREGARÁ AL FINAL
+console.log(ini.parameter(miArchivo, "altura")); //consola -> 1.71m
+
+miArchivo.write(); //GUARDAMOS CAMBIOS EN config.ini
+```
+__NOTA__:
