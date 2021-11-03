@@ -1,5 +1,5 @@
 # ini.js
-## Índice:
+## INDICE:
 * Informacion.
   - <a href="#a1">Características.</a>
   - <a href="#a2">Notas.</a>
@@ -57,7 +57,7 @@ var miArchivo2 = new Ini("C:/miProyecto/miArchivo2.ini", true); //DE ESTA FORMA,
 
 1. ```.parameters(parametro, positions)``` devuelve un array con todos los valores almacenados en todos los parametros llamados igual.
 
-<h2 id="b">Ejemplos:</h2>
+<h2 id="b">EJEMPLOS:</h2>
 
 Tenemos el siguiente archivo _config.ini_:
 ```ini
@@ -126,7 +126,7 @@ __NOTA__: En el momento en el que se le asigna el valor a un parametro no existe
 
 <hr>
 
-<h2 id="c">Uso de sections (secciones):</h2>
+<h2 id="c">USO DE SECCIONES (SECTIONS):</h2>
 
 Supongamos que tenemos el siguiente archivo _consig.ini_:
 ```ini
