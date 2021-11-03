@@ -55,7 +55,7 @@ miArchivo.open(); //ABRIMOS EL ARCHIVO, SI NO EXISTE, LUEGO SERÁ CREADO CUANDO 
 En este caso queremos saber que valor está amlacenado en el parametro "ip":
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
-var miArchivo = new Ini("config.ini");
+var miArchivo = new Ini("config.ini", true);
 
 console.log(miArchivo.parameter("ip")); //consola -> 123.456.789
 ```
@@ -63,7 +63,7 @@ console.log(miArchivo.parameter("ip")); //consola -> 123.456.789
 ### Cambiar el valor almacenado en un parametro:
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
-var miArchivo = new Ini("config.ini");
+var miArchivo = new Ini("config.ini", true);
 
 miArchivo.parameter("edad", 30); //CAMBIAMOS EL VALOR DE "edad" POR "30"
 console.log(miArchivo.parameter("edad")); //consola -> 30
@@ -73,7 +73,7 @@ __NOTA__: Si bien cambiamos el valor almacenado en nuestro archivo, este cambio 
 ### Guardar/aplicar cambios en el archivo:
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
-var miArchivo = new Ini("config.ini");
+var miArchivo = new Ini("config.ini", true);
 
 miArchivo.parameter("edad", 30);
 console.log(miArchivo.parameter("edad")); //consola -> 30
@@ -85,7 +85,7 @@ __NOTA__: Si no existe el archivo _config.ini_, será creado.
 ### Agregar un nuevo parametro:
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
-var miArchivo = new Ini("config.ini");
+var miArchivo = new Ini("config.ini", true);
 
 miArchivo.parameter("altura", "1.71m"); //altura NO EXISTE EN config.ini POR LO QUE SE AGREGARÁ AL FINAL
 console.log(ini.parameter(miArchivo, "altura")); //consola -> 1.71m
@@ -117,14 +117,23 @@ id=154
 integrantes=Pedro, Federico, Facundo
 tema=Química
 ```
+__Sintaxis para trabajar con secciones__: ```miArchivo.parameter(['Seleccion', 'parametro'], 'valor');```
 ### Buscar un parametro dentro de una seleccion:
+Supongamos que queremos saber la ID del Grupo B.
 ```javascript
 const Ini = require("C:/miProyecto/ini.js");
-var miArchivo = new Ini("config.ini");
+var miArchivo = new Ini("config.ini", true);
 
-miArchivo.parameter("altura", "1.71m"); //altura NO EXISTE EN config.ini POR LO QUE SE AGREGARÁ AL FINAL
-console.log(ini.parameter(miArchivo, "altura")); //consola -> 1.71m
+console.log(miArchivo.parameter(['Grupo B', 'id'])); //consola -> 210
+```
+### Cambiar el valor de un parametro dentro de una seleccion:
+Supongamos que queremos cambiar la ID del Grupo C por 230.
+```javascript
+const Ini = require("C:/miProyecto/ini.js");
+var miArchivo = new Ini("config.ini", true);
 
-miArchivo.write(); //GUARDAMOS CAMBIOS EN config.ini
+miArchivo.parameter(['Grupo C', 'id'], 230); //Ahora la ID del grupo C es 230
+
+miArchivo.write(); //Guardamos los cambios
 ```
 __NOTA__:
